@@ -36,6 +36,7 @@ Bridge.define('MusicGame.App', {
             throw new Bridge.ArgumentException("Problem");
         },
         main: function () {
+            MusicGame.App.updateButtons();
             Bridge.global.setInterval(MusicGame.App.showCoinsInterval, 1000);
             for (var n = 0; n < 7; n++) {
                 MusicGame.App.audio[n] = new Audio("Sounds/" + MusicGame.App.noteNamesLetter[n] + ".mp3");
@@ -93,6 +94,10 @@ Bridge.define('MusicGame.App', {
                     {
                         return MusicGame.App.getnoteNames()[MusicGame.App.mod(note, MusicGame.App.getnoteNames().length)];
                     }
+                case "tenor": 
+                    {
+                        return MusicGame.App.getnoteNames()[MusicGame.App.mod(note - 3, MusicGame.App.getnoteNames().length)];
+                    }
                 default: 
                     throw new Bridge.ArgumentException("Invalid Clef");
             }
@@ -128,7 +133,7 @@ Bridge.define('MusicGame.App', {
             for (var n = 0; n < 7; n++) 
                 (function () {
                     var value = document.getElementById("b" + n);
-                    var note = MusicGame.App.getNoteName(n);
+                    var note = MusicGame.App.getnoteNames()[MusicGame.App.mod(n, MusicGame.App.getnoteNames().length)];
                     value.innerHTML = note;
                     value.onclick = function (ev) {
                         MusicGame.App.chooseNote(note);
@@ -160,7 +165,6 @@ Bridge.define('MusicGame.App', {
         },
         updateClef: function () {
             MusicGame.App.clef = (document.getElementsByName("clef")[0]).value;
-            Bridge.global.alert("You change clef to " + MusicGame.App.clef + ".");
             MusicGame.App.displayRandomNote();
         },
         displayRandomNote: function () {

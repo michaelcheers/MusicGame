@@ -19,6 +19,7 @@ namespace MusicGame
         [Ready]
         public static void Main()
         {
+            UpdateButtons();
             Global.SetInterval(ShowCoinsInterval, 1000);
             for (int n = 0; n < 7; n++)
             {
@@ -111,6 +112,10 @@ namespace MusicGame
                     {
                         return noteNames[mod(note, noteNames.Length)];
                     }
+                case "tenor":
+                    {
+                        return noteNames[mod(note - 3, noteNames.Length)];
+                    }
                 default:
                     throw new ArgumentException("Invalid Clef");
             }
@@ -164,7 +169,7 @@ namespace MusicGame
             for (int n = 0; n < 7; n++)
             {
                 var value = Document.GetElementById("b" + n);
-                var note = GetNoteName(n);
+                var note = noteNames[mod(n, noteNames.Length)];
                 value.InnerHTML = note;
                 value.OnClick = (ev) => { ChooseNote(note); };
             }
@@ -200,7 +205,6 @@ namespace MusicGame
         static void UpdateClef ()
         {
             clef = (Document.GetElementsByName("clef")[0]).ToDynamic().value;
-            Global.Alert("You change clef to " + clef + ".");
             DisplayRandomNote();
         }
 

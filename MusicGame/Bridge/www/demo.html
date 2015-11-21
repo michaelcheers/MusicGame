@@ -19,27 +19,29 @@
 		and select "View in Browser"
 	-->
     Username: <input id="username" onkeydown="MusicGame.App.coinsFlag = true;" /><br />
-    Password: <input id="password" onkeydown="MusicGame.App.coinsFlag = true;" /><br />
+    Password: <input id="password" onkeydown="MusicGame.App.coinsFlag = true;" type="password" /><br />
     <span id="coinSpan"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAALHRFWHRDcmVhdGlvbiBUaW1lAFRodSAyNSBBdWcgMjAxMSAwNzoyMDo1NiAtMDgwMEKSIs8AAAAHdElNRQfbCBkOHQUs1KABAAAACXBIWXMAAB7CAAAewgFu0HU+AAAABGdBTUEAALGPC/xhBQAAAf9JREFUeNrtV79LAzEUfqn9IR60U6cuFVzEseAm6B/g3sXZuat/QFf/A5cu7iKOCt2ELi4ugi5OgnDSirXUmOTucsnlxz251i4NhOvlvb587/teLgnAihtZYmyKmXNZAOj4/UIbqATH4lmrNbV5VQAoxAg/Sj8bmmHydS5/B9enQE5m0r+MQEzV4Ci/EcD3/hPMJlcQbPZE52O83T3+GKixiOFPfqPU7+X1I3o+lOBwt2RhAIsY6Ue2QkMfOmxAu8X8bsbaeASgA1C934GqAzHAHLB+LokIK77bsw09npSAoZvsRXSKrOJshcOBmY0mh+KHkYiDOOrPMxKwzIJRz9Bsu0u9GT1fEskAVqIsA7IGVAbanbrQMcooBcYz4sEFA4MKkO4stswVtppSc5tE2VXgZQCTkY+hZDWoxYdmACD0Fh3XMZchxiKXyceA8GWBeCHKzv5E4+LkHx7RhY/il9in0zernRWb9NHeBxXxRDNgk0YWHWJZ8rFCNWAAizWFfui1J5q3W/ViNZDHgMu+ZmDNAJaB9DyQ2b/5PpC3SfnsPGPxsRo2tHdl3tUwAI5DKU2Q/gMDGoDkTEhYQPOwuRwG0A21F7jsrr0gO0nZC2GBDNjotw5kGChcA3lz5d2MjOJMMpTnAeTxu0ijro6pgbzgRdF5GcLEX8TlFHuntLZfGzPVjxMajsMAAAAASUVORK5CYII=" /><span id="coinNumber"></span></span>
     <div id=challenge>What is this note?</div>
     <canvas id="canvas"></canvas>
     <div>
-        <button onclick="MusicGame.App.chooseNote('Do')" id="b0">Do</button>
-        <button onclick="MusicGame.App.chooseNote('Re')" id="b1">Re</button>
-        <button onclick="MusicGame.App.chooseNote('Mi')" id="b2">Mi</button>
-        <button onclick="MusicGame.App.chooseNote('Fa')" id="b3">Fa</button>
-        <button onclick="MusicGame.App.chooseNote('So')" id="b4">So</button>
-        <button onclick="MusicGame.App.chooseNote('La')" id="b5">La</button>
-        <button onclick="MusicGame.App.chooseNote('Ti')" id="b6">Ti</button>
+        <button id="b0">Do</button>
+        <button id="b1">Re</button>
+        <button id="b2">Mi</button>
+        <button id="b3">Fa</button>
+        <button id="b4">So</button>
+        <button id="b5">La</button>
+        <button id="b6">Ti</button>
     </div>
     <div id=score>Right:0 Wrong:0</div>
     Type: <select onchange="MusicGame.App.updateButtons()" name="buttonType">
     <option value="dor">Elements: Do, Re, Mi, Fa, So, La, Ti</option>
     <option value="letter">Letter: C, D, E, F, G, A, B</option>
-    </select>
+    </select><br />
     Clef: <select onchange="MusicGame.App.updateClef()" name="clef">
-    <option value="treble">Treble</option>
-    <option value="bass">Bass</option>
+    <option value="treble">Treble (Right Hand Piano)</option>
+    <option value="bass">Bass (Left Hand Piano)</option>
+    <option value="tenor">Tenor</option>
+    <option value="alto">Alto</option>
     </select>
 </body>
 </html>
