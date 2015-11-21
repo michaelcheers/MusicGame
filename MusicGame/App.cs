@@ -105,7 +105,7 @@ namespace MusicGame
             {
                 case "treble":
                     {
-                        return noteNames[mod(note + 2, noteNames.Length)];
+                        return noteNames[mod(note - 2, noteNames.Length)];
                     }
                 case "bass":
                     {
@@ -164,7 +164,7 @@ namespace MusicGame
             for (int n = 0; n < 7; n++)
             {
                 var value = Document.GetElementById("b" + n);
-                var note = noteNames[n];
+                var note = GetNoteName(n);
                 value.InnerHTML = note;
                 value.OnClick = (ev) => { ChooseNote(note); };
             }
@@ -200,7 +200,8 @@ namespace MusicGame
         static void UpdateClef ()
         {
             clef = (Document.GetElementsByName("clef")[0]).ToDynamic().value;
-            DrawNote();
+            Global.Alert("You change clef to " + clef + ".");
+            DisplayRandomNote();
         }
 
         static string clef = "treble";
@@ -216,7 +217,7 @@ namespace MusicGame
 
             while (oldNote == note)
                 note = (int)(Math.Random() * (maxNote - minNote) + minNote);
-            noteName = noteNames[mod(note, noteNames.Length)];
+            noteName = GetNoteName(note);
             DrawNote();
         }
 

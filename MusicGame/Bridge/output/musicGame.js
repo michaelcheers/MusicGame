@@ -87,7 +87,7 @@ Bridge.define('MusicGame.App', {
             switch (MusicGame.App.clef) {
                 case "treble": 
                     {
-                        return MusicGame.App.getnoteNames()[MusicGame.App.mod(note + 2, MusicGame.App.getnoteNames().length)];
+                        return MusicGame.App.getnoteNames()[MusicGame.App.mod(note - 2, MusicGame.App.getnoteNames().length)];
                     }
                 case "bass": 
                     {
@@ -128,7 +128,7 @@ Bridge.define('MusicGame.App', {
             for (var n = 0; n < 7; n++) 
                 (function () {
                     var value = document.getElementById("b" + n);
-                    var note = MusicGame.App.getnoteNames()[n];
+                    var note = MusicGame.App.getNoteName(n);
                     value.innerHTML = note;
                     value.onclick = function (ev) {
                         MusicGame.App.chooseNote(note);
@@ -160,7 +160,8 @@ Bridge.define('MusicGame.App', {
         },
         updateClef: function () {
             MusicGame.App.clef = (document.getElementsByName("clef")[0]).value;
-            MusicGame.App.drawNote();
+            Bridge.global.alert("You change clef to " + MusicGame.App.clef + ".");
+            MusicGame.App.displayRandomNote();
         },
         displayRandomNote: function () {
             MusicGame.App.blocking = false;
@@ -172,7 +173,7 @@ Bridge.define('MusicGame.App', {
 
             while (oldNote === MusicGame.App.note)
                 MusicGame.App.note = Bridge.Int.trunc((Math.random() * (11) + MusicGame.App.minNote));
-            MusicGame.App.noteName = MusicGame.App.getnoteNames()[MusicGame.App.mod(MusicGame.App.note, MusicGame.App.getnoteNames().length)];
+            MusicGame.App.noteName = MusicGame.App.getNoteName(MusicGame.App.note);
             MusicGame.App.drawNote();
         }
     }
