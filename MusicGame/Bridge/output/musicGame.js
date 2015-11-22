@@ -164,7 +164,7 @@ Bridge.define('MusicGame.App', {
             }
         },
         updateClef: function () {
-            MusicGame.App.clef = (document.getElementsByName("clef")[0]).value;
+            MusicGame.App.clef = (Bridge.as((document.getElementsByName("clef")[0]), HTMLSelectElement)).value;
             MusicGame.App.displayRandomNote();
         },
         displayRandomNote: function () {

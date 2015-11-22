@@ -180,31 +180,31 @@ namespace MusicGame
             CanvasElement canvas = Document.GetElementById<CanvasElement>("canvas");
             if (canvas == Global.Undefined)
                 return;
-            var ctx = canvas.GetContext("2d").ToDynamic();
+            var ctx = canvas.GetContext(CanvasTypes.CanvasContext2DType.CanvasRenderingContext2D);
 
-            ctx.fillStyle = "rgb(255,255,255)";
-            ctx.fillRect(0, 0, 164, 164);
-            ctx.drawImage(staveImg, 50, 50);
+            ctx.FillStyle = "rgb(255,255,255)";
+            ctx.FillRect(0, 0, 164, 164);
+            ctx.DrawImage(staveImg, 50, 50);
 
             var noteY = 20 - note * 5;
-            ctx.drawImage(noteImg, 50, noteY);
+            ctx.DrawImage(noteImg, 50, noteY);
 
             // lines above stave
             for (var lineY = 20; lineY >= noteY; lineY -= 10)
             {
-                ctx.drawImage(lineImg, 50, lineY);
+                ctx.DrawImage(lineImg, 50, lineY);
             }
 
             // lines below stave
             for (var lineY = 80; lineY <= noteY; lineY += 10)
             {
-                ctx.drawImage(lineImg, 50, lineY);
+                ctx.DrawImage(lineImg, 50, lineY);
             }
         }
 
         static void UpdateClef ()
         {
-            clef = (Document.GetElementsByName("clef")[0]).ToDynamic().value;
+            clef = ((Document.GetElementsByName("clef")[0]) as SelectElement).Value;
             DisplayRandomNote();
         }
 
